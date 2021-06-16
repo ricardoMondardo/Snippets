@@ -1,4 +1,4 @@
-text = "9 \ncode test try code time item and for banana fade brand i face new all she here car"
+text = "6 \ncode o test try code time item and for banana fade brand i face new all she here car"
 
 cleanText = text[text.find('\n')+1:]
 arrText = cleanText.split(' ')
