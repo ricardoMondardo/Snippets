@@ -1,25 +1,23 @@
-dicOne = {
-    "1": "ccc",
-    "2": "abc"
-}
+text = "code test try code time item and for banana fade brand i face new all she here car"
+arrWord = text.split(" ")
 
-print("\nObj:")
-print(dicOne)
-print("\n")
+rDic = {}
 
-print("Print all values in the dictionary, one by one:\n")
-for x in dicOne:
-    print(dicOne[x])
-print("\n")    
 
-print("You can also use the values() function to return values of a dictionary:\n")
-for x, y in dicOne.items():
-  print(x, y)    
-print("\n")  
 
-print("Loop through both keys and values, by using the items() function:\n")
-for x in dicOne.values():
-  print(x) 
-print("\n")   
+
+for word in arrWord:
+  lenWord = len(word)
+
+  if lenWord in rDic:
+    rDic[lenWord].append(word)
+    rDic[lenWord] = sorted(rDic[lenWord])
+  else: 
+    rDic[lenWord] = [word]
+
+rDic = sorted(rDic.items(),reverse=True)    
+
+for k, v in rDic:
+  print(k,v)
 
 
