@@ -3,30 +3,28 @@
 
 # Another example: if strArr is ["aabdccdbcacd", "aad"] then the smallest substring of N that contains all of the characters in K is "aabd" which is located at the beginning of the string. Both parameters will be strings ranging in length from 1 to 50 characters and all of K's characters will exist somewhere in the string N. Both strings will only contains lowercase alphabetic characters.
 
+from collections import Counter
+
+EMPTY_COUNTER = Counter()
+
 def MinWindowSubstring(strArr):
 
   # code goes here
-  text = strArr[0]
-  sub = strArr[1]
+  st1, st2 = strArr
+  frequencyK = Counter(st2)
+  options = []
 
-  sizeWindow = len(sub)
-  sizeText = len(text)
+  for i in range(len(st1)):
+    curr = Counter()
+    for j in range(i, len(st1)):
 
-  pos = 0
-  rDic = {}
+      # equal to frequencyK
+      curr[st1[j]] += 1
+      if frequencyK - curr == EMPTY_COUNTER:
+        options.append(st1[i:j + 1])
+        break
 
-  for c in text:    
-    if sub.find(c) > -1:
-      rDic[pos] = c
-    pos += 1
-
-
-  for k,v in rDic.items(): 
-    if k + sizeWindow < sizeText:
-      print('a',k,v,sizeText, text[k:sizeText])
-    else:
-      print('n',k,v,sizeText, text[k:sizeText])
-  return rDic
+  return min(options, key=len)
 
 # keep this function call here 
 print(MinWindowSubstring(["ahffaksfajeeubsne", "jefaa"]))
