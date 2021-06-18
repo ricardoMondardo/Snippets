@@ -3,9 +3,6 @@ arrWord = text.split(" ")
 
 rDic = {}
 
-
-
-
 for word in arrWord:
   lenWord = len(word)
 
