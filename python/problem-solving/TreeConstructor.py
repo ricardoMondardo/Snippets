@@ -7,9 +7,9 @@ def TreeConstructor(strArr):
   chilrens = {}
 
   for i in strArr:
-    
-    children = i[1]
-    parent = i[3]
+
+    children = i.replace('(','').replace(')','').split(',')[0]
+    parent = i.replace('(','').replace(')','').split(',')[1]
 
     if parent in parents:
       parents[parent].append(children)
@@ -20,7 +20,7 @@ def TreeConstructor(strArr):
      
     if children in chilrens:
       chilrens[children].append(parents)
-      if len(chilrens[chilrens]) > 1:
+      if len(chilrens[children]) > 1:
         return 'false'
     else:
       chilrens[children] = [parent]
@@ -29,4 +29,4 @@ def TreeConstructor(strArr):
   return 'true'
 
 # keep this function call here 
-print(TreeConstructor(["(1,2)", "(2,4)", "(5,7)", "(7,2)", "(9,5)"]))
+print(TreeConstructor(["(2,3)", "(1,2)", "(4,9)", "(9,3)", "(12,9)", "(6,4)"]))
