@@ -1,8 +1,8 @@
-function removeFromString(str, v) {
-    let arrStr = str.split('')
-    result = arrStr.filter(e => e != v)
-    return result.join('');
+function removeFromString(str, index) {
+    let result = '';
+    for (let i in str) if (i != index) result += str[i];
+    return result;
 }
 
 
-console.log(removeFromString('abcd','b'));
+console.log(removeFromString('abcd',1));

@@ -1,7 +1,7 @@
-function removeFromString(str, v) {
-    let arrStr = str.split('')
-    result = arrStr.filter(e => e != v)
-    return result.join('');
+function removeFromString(str, index) {
+    let result = '';
+    for (let i in str) if (i != index) result += str[i];
+    return result;
 }
 
 function MinWindowSubstring(strArr) { 
@@ -9,8 +9,8 @@ function MinWindowSubstring(strArr) {
     const phase = strArr[0];
     const strInterval = strArr[1];
 
-    let list = [];
-    let lists = [];    
+    let list = []; 
+    let result = phase;
 
     for (let i = 0; i < phase.length; i++)
     {        
@@ -21,36 +21,38 @@ function MinWindowSubstring(strArr) {
         if (index > -1) {
 
             // Just Fix de FN, to realy remove
-            strTemp = removeFromString(strTemp,firstValue);
+            strTemp = removeFromString(strTemp,index);
             list.push(firstValue);            
 
             for (let j = i+1; j < phase.length; j++)
             {            
                 let nextValue = phase[j];
     
-                index = strTemp.indexOf(nextValue)
-                list.push(nextValue);
+                index = strTemp.indexOf(nextValue)                
+                if (strInterval.length > 1) list.push(nextValue);
     
                 if (index > -1) {
-                    strTemp = removeFromString(strTemp,nextValue)                
+                    strTemp = removeFromString(strTemp,index)                
                 }
     
                 if (strTemp.length == 0) {
-                    console.log(firstValue, nextValue, list);
-                    lists.push(list.join(''));
+                    //console.log(list.join(''))
+                    if (list.length >= strInterval.length) {                        
+                        if (list.length < result.length) {
+                            result = list.join('')
+                        }              
+                    }
                     list = [];
-                    j == phase.length;
                     strTemp = strInterval;
+                    j = phase.length;
                 }
                         
             }
         }    
         
     }
-
-    return lists   
+    return result   
 }
      
-console.log(MinWindowSubstring(["ahffaksfajeeubsne", "jefaa"]));
-
+console.log(MinWindowSubstring(["ahffaksfajeeubsne", "a"]));
 //aksfaje
