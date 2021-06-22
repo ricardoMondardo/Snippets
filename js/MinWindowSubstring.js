@@ -18,22 +18,25 @@ function MinWindowSubstring(strArr) {
 
     let frequanceInterval = findFrequence(arrInterval)
     let intervals = []
+
+
     let intervalPartial = {};
 
     console.log(Array.isArray(arrPhase));
 
     for (let i = 0; i < arrPhase.length; i++)
     {
-        intervalPartial = {}
+        intervalPartial = frequanceInterval;
+        if (intervalPartial[arrPhase[i]] != null) intervalPartial[arrPhase[i]] = -1;
         for (let j = i; j < arrPhase.length; j++)
         {
-            if (intervalPartial[arrPhase[j]] == null) intervalPartial[arrPhase[j]] = 1
-            else intervalPartial[arrPhase[j]] += 1
-            console.log(arrPhase[i],intervalPartial);
+            if (intervalPartial[arrPhase[j]] != null) intervalPartial[arrPhase[j]] = -1;
+            console.log(intervalPartial)
         }
+        
     }
 
     return frequanceInterval   
 }
      
-console.log(MinWindowSubstring(["ahffaksfajeeubsne", "jefaa"]));
+console.log(MinWindowSubstring(["ahffaksfajeeubsnea", "jefaa"]));
