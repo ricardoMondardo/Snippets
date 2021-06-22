@@ -1,0 +1,57 @@
+function removeFromString(str, v) {
+    arrStr = str.split('')
+    index = arrStr.indexOf(v);
+    if (index > -1) arrStr.splice(index,1)
+    return arrStr.join('');
+}
+
+function MinWindowSubstring(strArr) { 
+
+    const phase = strArr[0];
+    const strInterval = strArr[1];
+
+    let list = [];
+    let lists = [];    
+
+    for (let i = 0; i < phase.length; i++)
+    {        
+        let firstValue = phase[i];
+        let nextValue = '';
+        let strTemp = strInterval;
+
+        let index = strTemp.indexOf(firstValue)
+        
+        if (index > -1) {
+
+            strTemp = removeFromString(strTemp,firstValue);
+            list.push(firstValue);
+
+            for (let j = i+1; j < phase.length; j++)
+            {            
+                nextValue = phase[j];
+    
+                index = strTemp.indexOf(nextValue)
+                list.push(nextValue);
+    
+                if (index > -1) {
+                    strTemp = removeFromString(strTemp,nextValue)                
+                }
+    
+                if (strTemp.length == 0) {
+                    lists.push(list.join(''));
+                    list = [];
+                    j == phase.length;
+                    strTemp = strInterval;
+                }
+                        
+            }
+        }    
+        
+    }
+
+    return lists   
+}
+     
+console.log(MinWindowSubstring(["ahffaksfajeeubsne", "jefaa"]));
+
+//aksfaje
