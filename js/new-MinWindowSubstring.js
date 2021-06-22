@@ -1,8 +1,7 @@
 function removeFromString(str, v) {
-    arrStr = str.split('')
-    index = arrStr.indexOf(v);
-    if (index > -1) arrStr.splice(index,1)
-    return arrStr.join('');
+    let arrStr = str.split('')
+    result = arrStr.filter(e => e != v)
+    return result.join('');
 }
 
 function MinWindowSubstring(strArr) { 
@@ -16,19 +15,18 @@ function MinWindowSubstring(strArr) {
     for (let i = 0; i < phase.length; i++)
     {        
         let firstValue = phase[i];
-        let nextValue = '';
         let strTemp = strInterval;
 
         let index = strTemp.indexOf(firstValue)
-        
         if (index > -1) {
 
+            // Just Fix de FN, to realy remove
             strTemp = removeFromString(strTemp,firstValue);
-            list.push(firstValue);
+            list.push(firstValue);            
 
             for (let j = i+1; j < phase.length; j++)
             {            
-                nextValue = phase[j];
+                let nextValue = phase[j];
     
                 index = strTemp.indexOf(nextValue)
                 list.push(nextValue);
@@ -38,6 +36,7 @@ function MinWindowSubstring(strArr) {
                 }
     
                 if (strTemp.length == 0) {
+                    console.log(firstValue, nextValue, list);
                     lists.push(list.join(''));
                     list = [];
                     j == phase.length;
