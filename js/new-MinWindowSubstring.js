@@ -20,7 +20,6 @@ function MinWindowSubstring(strArr) {
         let index = strTemp.indexOf(firstValue)
         if (index > -1) {
 
-            // Just Fix de FN, to realy remove
             strTemp = removeFromString(strTemp,index);
             list.push(firstValue);            
 
@@ -35,8 +34,8 @@ function MinWindowSubstring(strArr) {
                     strTemp = removeFromString(strTemp,index)                
                 }
     
+                // When all is found
                 if (strTemp.length == 0) {
-                    //console.log(list.join(''))
                     if (list.length >= strInterval.length) {                        
                         if (list.length < result.length) {
                             result = list.join('')
